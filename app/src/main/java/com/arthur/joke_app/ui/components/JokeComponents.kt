@@ -1,14 +1,25 @@
 package com.arthur.joke_app.ui.components
 
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.GenericShape
+import androidx.compose.material.Divider
+import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.CheckCircleOutline
+import androidx.compose.material.icons.filled.IosShare
+import androidx.compose.material.icons.filled.Share
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Shadow
+import androidx.compose.ui.graphics.vector.rememberVectorPainter
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -89,4 +100,29 @@ fun JokeTwoPartsComponent(
             textAlign = TextAlign.Center
         )
     }
+
+}
+
+@Composable
+fun ShareJokeComponent(
+    joke: JokeResponse,
+    onShareClicked: (joke: JokeResponse) -> Unit
+) {
+    Spacer(modifier = Modifier.padding(16.dp))
+    Divider(
+        color = SuperWhite,
+        modifier = Modifier
+            .fillMaxWidth()
+            .width(1.dp)
+    )
+    Spacer(modifier = Modifier.padding(16.dp))
+    Icon(
+        imageVector = Icons.Filled.Share,
+        contentDescription = null,
+        tint = SuperWhite,
+        modifier = Modifier
+            .requiredSize(35.dp)
+            .fillMaxWidth()
+            .clickable { onShareClicked(joke) }
+    )
 }
