@@ -1,5 +1,6 @@
-package com.arthur.joke_app.ui.screens.login
+package com.arthur.joke_app.ui.screens.home
 
+import android.util.Log
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
@@ -7,35 +8,40 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.arthur.joke_app.ui.components.JokeComponent
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlin.random.Random
 
 @OptIn(ExperimentalFoundationApi::class)
 @ExperimentalAnimationApi
 @ExperimentalMaterialApi
 @ExperimentalCoroutinesApi
 @Composable
-fun LoginScreen(
+fun HomeScreen(
     navigateToView: () -> Unit,
-    viewModel: LoginViewModel = hiltViewModel()
+    viewModel: HomeViewModel = hiltViewModel()
 ) {
     val scaffoldState = rememberScaffoldState()
-
     val uiState by viewModel.uiState.collectAsState()
+
 
     Scaffold(
         scaffoldState = scaffoldState
-    ) {
+    ) { padding ->
         Column(
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(padding)
         ) {
             Surface() {
                 if (uiState.loading) {
                     LinearProgressIndicator(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .height(5.dp),
+                            .height(8.dp),
                         color = MaterialTheme.colors.secondary
                     )
                 }
@@ -43,21 +49,33 @@ fun LoginScreen(
             Box(
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(MaterialTheme.colors.background)
+                    .background(
+                        Color(
+                            Random.nextInt(256),
+                            Random.nextInt(256),
+                            Random.nextInt(256)
+                        )
+                    )
             ) {
                 Column(
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally,
                     modifier = Modifier
+                        .clickable {
+                            if (!uiState.loading) {
+                                viewModel.getJoke()
+                            }
+                        }
+                        .padding(16.dp)
                         .fillMaxSize()
                         .verticalScroll(rememberScrollState())
                 ) {
-
-                    Text(text = "Hola Android!!")
-
+                    uiState.joke?.let { safeJoke ->
+                        JokeComponent(joke = safeJoke)
+                    }
                 }
-            }
 
+            }
         }
     }
 }
