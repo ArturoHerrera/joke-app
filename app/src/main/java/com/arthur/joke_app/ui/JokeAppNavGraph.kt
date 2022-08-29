@@ -8,7 +8,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.arthur.joke_app.ui.screens.login.LoginScreen
+import com.arthur.joke_app.ui.screens.home.HomeScreen
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 object Destinations {
@@ -32,7 +32,7 @@ fun JokeAppNavGraph(
         startDestination = startDestination
     ) {
         composable(Destinations.SPLASH_SCREEN) {
-            LoginScreen(
+            HomeScreen(
                 navigateToView = actions.navigateToHome,
             )
         }

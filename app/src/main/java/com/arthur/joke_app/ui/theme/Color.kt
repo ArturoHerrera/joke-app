@@ -10,3 +10,5 @@ val Teal200 = Color(0xFF03DAC5)
 val DarknesBlue = Color(0xFF1E1E28)
 val BoneWhite = Color(0xFFF6F6F6)
 val TextGray = Color(0xFFD9D8DE)
+
+val SuperWhite = Color(0xFFFFFFFF)
