@@ -34,7 +34,7 @@ fun JokeAppNavGraph(
     ) {
         composable(Destinations.LOGIN_SCREEN) {
             LoginScreen(
-                navigateToView = actions.navigateToHome,
+                navigateToHome = actions.navigateToHome,
             )
         }
         composable(Destinations.HOME_SCREEN) {

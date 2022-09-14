@@ -23,6 +23,7 @@ import com.arthur.joke_app.R
 import com.arthur.joke_app.ui.screens.home.HomeViewModel
 import com.arthur.joke_app.ui.theme.QuickSand
 import com.arthur.joke_app.ui.theme.SuperWhite
+import com.arthur.joke_app.utils.ExtFunctions.gradientBackground
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlin.random.Random
 
@@ -31,7 +32,7 @@ import kotlin.random.Random
 @ExperimentalCoroutinesApi
 @Composable
 fun LoginScreen(
-    navigateToView: () -> Unit,
+    navigateToHome: () -> Unit,
     viewModel: HomeViewModel = hiltViewModel()
 ) {
     val scaffoldState = rememberScaffoldState()
@@ -60,12 +61,19 @@ fun LoginScreen(
             Box(
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(
-                        Color(
-                            Random.nextInt(256),
-                            Random.nextInt(256),
-                            Random.nextInt(256)
-                        )
+                    .gradientBackground(
+                        listOf(
+                            Color(
+                                Random.nextInt(256),
+                                Random.nextInt(256),
+                                Random.nextInt(256)
+                            ), Color(
+                                Random.nextInt(256),
+                                Random.nextInt(256),
+                                Random.nextInt(256)
+                            )
+                        ),
+                        angle = 45f
                     )
             ) {
                 Column(
@@ -100,8 +108,10 @@ fun LoginScreen(
                     Row(
                         horizontalArrangement = Arrangement.Start,
                         verticalAlignment = Alignment.CenterVertically,
-                        modifier = Modifier.padding(bottom = 16.dp, start = 0.dp, end = 0.dp).fillMaxWidth()
-                    ){
+                        modifier = Modifier
+                            .padding(bottom = 16.dp, start = 0.dp, end = 0.dp)
+                            .fillMaxWidth()
+                    ) {
                         Checkbox(
                             checked = acceptTerms.value,
                             colors = CheckboxDefaults.colors(
@@ -136,9 +146,7 @@ fun LoginScreen(
                         ),
                         elevation = ButtonDefaults.elevation(8.dp),
                         shape = RoundedCornerShape(6.dp),
-                        onClick = {
-
-                        }
+                        onClick = navigateToHome
                     ) {
                         Image(
                             painter = painterResource(

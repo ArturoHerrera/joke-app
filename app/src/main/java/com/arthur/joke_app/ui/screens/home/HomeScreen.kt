@@ -17,6 +17,7 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.arthur.joke_app.ui.components.JokeComponent
 import com.arthur.joke_app.ui.components.ShareJokeComponent
+import com.arthur.joke_app.utils.ExtFunctions.gradientBackground
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlin.random.Random
 
@@ -54,12 +55,19 @@ fun HomeScreen(
             Box(
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(
-                        Color(
-                            Random.nextInt(256),
-                            Random.nextInt(256),
-                            Random.nextInt(256)
-                        )
+                    .gradientBackground(
+                        listOf(
+                            Color(
+                                Random.nextInt(256),
+                                Random.nextInt(256),
+                                Random.nextInt(256)
+                            ), Color(
+                                Random.nextInt(256),
+                                Random.nextInt(256),
+                                Random.nextInt(256)
+                            )
+                        ),
+                        angle = 45f
                     )
             ) {
                 Column(
