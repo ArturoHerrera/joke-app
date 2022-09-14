@@ -141,19 +141,25 @@ fun LoginScreen(
                         shape = RoundedCornerShape(6.dp),
                         onClick = viewModel::oneTapSignIn
                     ) {
-                        Image(
-                            painter = painterResource(
-                                id = R.drawable.ic_google_logo
-                            ),
-                            contentDescription = null
-                        )
-                        Text(
-                            text = stringResource(id = R.string.sign_in_google),
-                            modifier = Modifier.padding(start = 16.dp, end = 16.dp, top = 6.dp, bottom = 6.dp),
-                            fontFamily = QuickSand,
-                            fontWeight = FontWeight.Black,
-                            fontSize = 18.sp
-                        )
+                        Row(
+                            horizontalArrangement = Arrangement.Center,
+                            verticalAlignment = Alignment.CenterVertically,
+                            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)
+                        ){
+                            Image(
+                                painter = painterResource(
+                                    id = R.drawable.ic_google_logo
+                                ),
+                                contentDescription = null
+                            )
+                            Text(
+                                text = stringResource(id = R.string.sign_in_google),
+                                modifier = Modifier.padding(start = 16.dp, end = 16.dp, top = 6.dp, bottom = 6.dp),
+                                fontFamily = QuickSand,
+                                fontWeight = FontWeight.Black,
+                                fontSize = 12.sp
+                            )
+                        }
                     }
                 }
             }

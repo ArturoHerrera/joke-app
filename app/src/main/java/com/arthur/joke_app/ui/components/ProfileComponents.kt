@@ -2,6 +2,7 @@ package com.arthur.joke_app.ui.components
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -66,7 +67,7 @@ fun HomeProfileDrawer(
                 text = stringResource(id = R.string.profile_welcome),
                 fontFamily = QuickSand,
                 fontWeight = FontWeight.Black,
-                fontSize = 32.sp,
+                fontSize = 16.sp,
                 style = MaterialTheme.typography.h4.copy(
                     shadow = Shadow(
                         color = colorResource(id = R.color.black),
@@ -96,7 +97,7 @@ fun HomeProfileDrawer(
                 text = userDisplayName,
                 fontFamily = QuickSand,
                 fontWeight = FontWeight.Black,
-                fontSize = 32.sp,
+                fontSize = 16.sp,
                 style = MaterialTheme.typography.h4.copy(
                     shadow = Shadow(
                         color = colorResource(id = R.color.black),
@@ -135,7 +136,7 @@ fun HomeProfileDrawer(
                     modifier = Modifier.padding(start = 16.dp, end = 16.dp, top = 6.dp, bottom = 6.dp),
                     fontFamily = QuickSand,
                     fontWeight = FontWeight.Black,
-                    fontSize = 18.sp
+                    fontSize = 12.sp
                 )
             }
         }
