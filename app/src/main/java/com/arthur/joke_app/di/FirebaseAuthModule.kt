@@ -5,6 +5,8 @@ import android.content.Context
 import com.arthur.joke_app.R
 import com.arthur.joke_app.core.AppConstants.SIGN_IN_REQUEST
 import com.arthur.joke_app.core.AppConstants.SIGN_UP_REQUEST
+import com.arthur.joke_app.data.repository.AuthRepository
+import com.arthur.joke_app.data.repository.remote_data_source.AuthFirebaseRemoteDataSource
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.identity.Identity
 import com.google.android.gms.auth.api.identity.SignInClient
@@ -19,6 +21,7 @@ import com.google.firebase.ktx.Firebase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Named
 
@@ -34,7 +37,7 @@ object FirebaseAuthModule {
 
     @Provides
     fun provideOneTapClient(
-        context: Context
+        @ApplicationContext context: Context
     ) = Identity.getSignInClient(context)
 
     @Provides
@@ -80,7 +83,7 @@ object FirebaseAuthModule {
         options: GoogleSignInOptions
     ) = GoogleSignIn.getClient(app, options)
 
-    /*@Provides
+    @Provides
     fun provideAuthRepository(
         auth: FirebaseAuth,
         oneTapClient: SignInClient,
@@ -90,13 +93,15 @@ object FirebaseAuthModule {
         signUpRequest: BeginSignInRequest,
         signInClient: GoogleSignInClient,
         db: FirebaseFirestore
-    ): AuthRepository = AuthRepositoryImpl(
-        auth = auth,
-        oneTapClient = oneTapClient,
-        signInRequest = signInRequest,
-        signUpRequest = signUpRequest,
-        signInClient = signInClient,
-        db = db
-    )*/
+    ): AuthRepository = AuthRepository(
+        AuthFirebaseRemoteDataSource(
+            auth = auth,
+            oneTapClient = oneTapClient,
+            signInRequest = signInRequest,
+            signUpRequest = signUpRequest,
+            signInClient = signInClient,
+            db = db
+        )
+    )
 
 }

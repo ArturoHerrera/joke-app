@@ -1,5 +1,10 @@
 package com.arthur.joke_app.ui.screens.login
 
+import android.app.Activity
+import android.util.Log
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.IntentSenderRequest
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
@@ -21,10 +26,16 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.arthur.joke_app.R
 import com.arthur.joke_app.ui.components.CircleCheckbox
+import com.arthur.joke_app.ui.components.OneTapSignIn
+import com.arthur.joke_app.ui.components.SignInWithGoogle
 import com.arthur.joke_app.ui.screens.home.HomeViewModel
 import com.arthur.joke_app.ui.theme.QuickSand
 import com.arthur.joke_app.ui.theme.SuperWhite
 import com.arthur.joke_app.utils.ExtFunctions.gradientBackground
+import com.google.android.gms.auth.api.identity.BeginSignInResult
+import com.google.android.gms.common.api.ApiException
+import com.google.firebase.auth.GoogleAuthProvider
+import com.google.gson.Gson
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlin.random.Random
 
@@ -34,7 +45,7 @@ import kotlin.random.Random
 @Composable
 fun LoginScreen(
     navigateToHome: () -> Unit,
-    viewModel: HomeViewModel = hiltViewModel()
+    viewModel: LoginViewModel = hiltViewModel()
 ) {
     val scaffoldState = rememberScaffoldState()
     val uiState by viewModel.uiState.collectAsState()
@@ -42,26 +53,12 @@ fun LoginScreen(
     val acceptTerms = remember { mutableStateOf(false) }
 
     Scaffold(
-        scaffoldState = scaffoldState
-    ) { padding ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(padding)
-        ) {
-            Surface() {
-                if (uiState.loading) {
-                    LinearProgressIndicator(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(8.dp),
-                        color = MaterialTheme.colors.secondary
-                    )
-                }
-            }
+        scaffoldState = scaffoldState,
+        content = { padding ->
             Box(
                 modifier = Modifier
                     .fillMaxSize()
+                    .padding(padding)
                     .gradientBackground(
                         listOf(
                             Color(
@@ -144,7 +141,7 @@ fun LoginScreen(
                         ),
                         elevation = ButtonDefaults.elevation(8.dp),
                         shape = RoundedCornerShape(6.dp),
-                        onClick = navigateToHome
+                        onClick = viewModel::oneTapSignIn
                     ) {
                         Image(
                             painter = painterResource(
@@ -163,5 +160,51 @@ fun LoginScreen(
                 }
             }
         }
+    )
+
+    val launcher = rememberLauncherForActivityResult(ActivityResultContracts.StartIntentSenderForResult()) { result ->
+        Log.i("testLogin", "- LoginScreen launcher result -> ${result}")
+        if (result.resultCode == Activity.RESULT_OK ) {
+            try {
+                val credentials = viewModel.oneTapClient.getSignInCredentialFromIntent(result.data)
+                val googleIdToken = credentials.googleIdToken
+                val googleCredentials = GoogleAuthProvider.getCredential(googleIdToken, null)
+                viewModel.signInWithGoogle(googleCredentials)
+            } catch (it: ApiException) {
+                print(it)
+            }
+        }
     }
+
+    fun launch(signInResult: BeginSignInResult) {
+        val intent = IntentSenderRequest.Builder(signInResult.pendingIntent.intentSender).build()
+        launcher.launch(intent)
+    }
+
+    uiState.oneTapSignInResponse?.let { safeOneTapSignInResponse ->
+        OneTapSignIn(
+            oneTapSignInResponse = safeOneTapSignInResponse,
+            launch = {
+                Log.i("testLogin", "- LoginScreen oneTapSignInResponse launch -> ${Gson().toJson(it)}")
+                LaunchedEffect(it) {
+                    launch(it)
+                }
+            }
+        )
+    }
+
+    uiState.signInWithGoogleResponse?.let { safeSignInWithGoogleResponse ->
+        SignInWithGoogle(
+            signInWithGoogleResponse = safeSignInWithGoogleResponse,
+            navigateToHomeScreen = { signedIn ->
+                Log.i("testLogin", "- LoginScreen signInWithGoogleResponse navigateToHomeScreen -> ${Gson().toJson(signedIn)}")
+                if (signedIn) {
+                    LaunchedEffect(signedIn) {
+                        navigateToHome()
+                    }
+                }
+            }
+        )
+    }
+
 }

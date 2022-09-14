@@ -16,6 +16,7 @@ import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat.startActivity
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.arthur.joke_app.ui.components.JokeComponent
+import com.arthur.joke_app.ui.components.ProgressBar
 import com.arthur.joke_app.ui.components.ShareJokeComponent
 import com.arthur.joke_app.utils.ExtFunctions.gradientBackground
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -42,15 +43,8 @@ fun HomeScreen(
                 .fillMaxSize()
                 .padding(padding)
         ) {
-            Surface() {
-                if (uiState.loading) {
-                    LinearProgressIndicator(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(8.dp),
-                        color = MaterialTheme.colors.secondary
-                    )
-                }
+            if (uiState.loading) {
+                ProgressBar()
             }
             Box(
                 modifier = Modifier

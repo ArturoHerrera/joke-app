@@ -16,7 +16,8 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 @ExperimentalCoroutinesApi
 @ExperimentalMaterialApi
 @Composable
-fun AndroidTemplateApp() {
+fun JokeApp() {
+
     JokeAppTheme {
         val navController = rememberNavController()
 
