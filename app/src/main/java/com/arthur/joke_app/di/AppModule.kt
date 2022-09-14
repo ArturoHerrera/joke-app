@@ -5,7 +5,7 @@ import android.content.Context
 import androidx.annotation.NonNull
 import com.arthur.joke_app.BuildConfig
 import com.arthur.joke_app.MyApplication
-import com.arthur.joke_app.utils.AppPreferences
+import com.arthur.joke_app.core.AppPreferences
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.localebro.okhttpprofiler.OkHttpProfilerInterceptor

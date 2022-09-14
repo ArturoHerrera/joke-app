@@ -1,4 +1,4 @@
-package com.arthur.joke_app.ui
+package com.arthur.joke_app.navigation
 
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.material.ExperimentalMaterialApi

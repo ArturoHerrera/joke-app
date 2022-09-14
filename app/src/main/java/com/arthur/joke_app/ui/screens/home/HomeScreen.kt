@@ -20,7 +20,6 @@ import com.arthur.joke_app.ui.components.ShareJokeComponent
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlin.random.Random
 
-@OptIn(ExperimentalFoundationApi::class)
 @ExperimentalAnimationApi
 @ExperimentalMaterialApi
 @ExperimentalCoroutinesApi

@@ -5,6 +5,7 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.rememberNavController
+import com.arthur.joke_app.navigation.JokeAppNavGraph
 import com.arthur.joke_app.ui.theme.JokeAppTheme
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 

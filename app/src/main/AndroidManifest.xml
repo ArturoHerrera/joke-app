@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Androidtemplate">
         <activity
-            android:name="com.arthur.joke_app.MainActivity"
+            android:name="com.arthur.joke_app.ui.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.Androidtemplate">
