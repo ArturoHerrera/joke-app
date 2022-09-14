@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.arthur.joke_app.R
+import com.arthur.joke_app.ui.components.CircleCheckbox
 import com.arthur.joke_app.ui.screens.home.HomeViewModel
 import com.arthur.joke_app.ui.theme.QuickSand
 import com.arthur.joke_app.ui.theme.SuperWhite
@@ -112,13 +113,10 @@ fun LoginScreen(
                             .padding(bottom = 16.dp, start = 0.dp, end = 0.dp)
                             .fillMaxWidth()
                     ) {
-                        Checkbox(
-                            checked = acceptTerms.value,
-                            colors = CheckboxDefaults.colors(
-                                checkedColor = Color.Black,
-                                checkmarkColor = Color.White,
-                            ),
-                            onCheckedChange = { acceptTerms.value = it }
+                        CircleCheckbox(
+                            selected = acceptTerms.value,
+                            enabled = true,
+                            onChecked = { acceptTerms.value = !acceptTerms.value }
                         )
                         Text(
                             text = stringResource(id = R.string.terms_condition),

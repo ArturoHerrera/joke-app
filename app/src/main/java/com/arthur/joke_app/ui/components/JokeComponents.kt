@@ -1,17 +1,21 @@
 package com.arthur.joke_app.ui.components
 
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Divider
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shadow
+import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -48,7 +52,7 @@ fun JokeSingleComponent(
             ),
             fontFamily = QuickSand,
             color = SuperWhite,
-            fontWeight = FontWeight.Bold,
+            fontWeight = FontWeight.Black,
             textAlign = TextAlign.Center
         )
     }
@@ -70,7 +74,7 @@ fun JokeTwoPartsComponent(
             ),
             fontFamily = QuickSand,
             color = SuperWhite,
-            fontWeight = FontWeight.Bold,
+            fontWeight = FontWeight.Black,
             textAlign = TextAlign.Center
         )
     }
@@ -87,7 +91,7 @@ fun JokeTwoPartsComponent(
             ),
             fontFamily = QuickSand,
             color = SuperWhite,
-            fontWeight = FontWeight.Bold,
+            fontWeight = FontWeight.Black,
             textAlign = TextAlign.Center
         )
     }
@@ -100,12 +104,22 @@ fun ShareJokeComponent(
     onShareClicked: (joke: JokeResponse) -> Unit
 ) {
     Spacer(modifier = Modifier.padding(16.dp))
-    Divider(
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(12.dp),
+        backgroundColor = Color.White,
+        elevation = 8.dp,
+        border = BorderStroke(2.dp,Color.Black),
+        shape = RoundedCornerShape(12.dp),
+    ){}
+    /*Divider(
         color = SuperWhite,
         modifier = Modifier
             .fillMaxWidth()
-            .width(1.dp)
-    )
+            .height(5.dp)
+            .fillMaxSize()
+    )*/
     Spacer(modifier = Modifier.padding(16.dp))
     Icon(
         imageVector = Icons.Filled.Share,
