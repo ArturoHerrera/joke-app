@@ -5,21 +5,20 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.LinearProgressIndicator
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.arthur.joke_app.core.FirebaseAuthResponse
 import com.arthur.joke_app.core.FirebaseAuthResponse.*
-import com.arthur.joke_app.ui.screens.login.LoginUiState
 import com.google.android.gms.auth.api.identity.BeginSignInResult
 import com.google.gson.Gson
+import kotlin.random.Random
 
 @Composable
 fun OneTapSignIn(
@@ -56,15 +55,36 @@ fun SignInWithGoogle(
 }
 
 @Composable
+fun SignOut(
+    signOutResponse: FirebaseAuthResponse<Boolean>,
+    navigateToAuthScreen: @Composable (signedOut: Boolean) -> Unit
+) {
+    when(val signOutResponse = signOutResponse) {
+        is Loading -> ProgressBar()
+        is Success -> signOutResponse.data?.let { signedOut ->
+            navigateToAuthScreen(signedOut)
+        }
+        is Failure -> LaunchedEffect(Unit) {
+            print(signOutResponse.e)
+        }
+    }
+}
+
+@Composable
 fun ProgressBar() {
-    Surface(
+    Box(
         modifier = Modifier.fillMaxWidth()
     ){
         LinearProgressIndicator(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(8.dp),
-            color = MaterialTheme.colors.secondary
+                .height(16.dp),
+            color = Color(
+                Random.nextInt(1, 256),
+                Random.nextInt(1, 256),
+                Random.nextInt(1, 256)
+            ),
+            backgroundColor = Color.Black
         )
     }
 }

@@ -17,6 +17,7 @@ buildscript {
         firebase_auth_version = '20.3.0'
         play_services_version = '1.6.4'
         play_services_auth_version = '20.3.0'
+        koil_version = '2.2.1'
     }
     repositories {
         // Make sure that you have the following two repositories

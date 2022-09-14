@@ -2,6 +2,7 @@ package com.arthur.joke_app.ui
 
 import android.content.pm.ActivityInfo
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -35,25 +36,21 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         setContent {
-            //JokeApp()
             JokeAppTheme {
                 navController = rememberNavController()
                 Scaffold {
-                    JokeAppNavGraph(
-                        navController = navController
-                    )
+                    JokeAppNavGraph(navController = navController)
                     checkAuthState()
                 }
-
             }
         }
     }
 
     private fun checkAuthState() {
         if(viewModel.isUserAuthenticated) {
-            navigateToProfileScreen()
+            Log.i("testUser", "MainActivity userDisplayName -> ${viewModel.userDisplayName}")
+            Log.i("testUser", "MainActivityuserPhotoUrl -> ${viewModel.userPhotoUrl}")
+            navController.navigate(Destinations.HOME_SCREEN)
         }
     }
-
-    private fun navigateToProfileScreen() = navController.navigate(Destinations.HOME_SCREEN)
 }

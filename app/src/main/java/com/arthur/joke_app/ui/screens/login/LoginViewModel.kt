@@ -31,10 +31,30 @@ class LoginViewModel @Inject constructor(
         vmUiState.value
     )
 
-    //TODO save user data.
+    //TODO Improve the way of saving user data. Room or sharedPreferences.
     val isUserAuthenticated = authRepository.isUserAuthenticatedInFirebase
     val userDisplayName = authRepository.userDisplayName
     val userPhotoUrl = authRepository.userPhotoUrl
+
+    init {
+        viewModelScope.launch {
+            setUser(
+                isUserAuthenticated = authRepository.isUserAuthenticatedInFirebase,
+                userDisplayName = authRepository.userDisplayName,
+                userPhotoUrl = authRepository.userPhotoUrl
+            )
+        }
+    }
+
+    private fun setUser(isUserAuthenticated: Boolean, userDisplayName: String, userPhotoUrl: String){
+        vmUiState.update {
+            it.copy(
+                isUserAuthenticated = isUserAuthenticated,
+                displayName = userDisplayName,
+                photoUrl = userPhotoUrl
+            )
+        }
+    }
 
     fun clearUiState(){
         vmUiState.update {

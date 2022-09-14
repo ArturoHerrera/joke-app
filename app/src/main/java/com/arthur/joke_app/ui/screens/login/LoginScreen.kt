@@ -151,7 +151,7 @@ fun LoginScreen(
                         )
                         Text(
                             text = stringResource(id = R.string.sign_in_google),
-                            modifier = Modifier.padding(6.dp),
+                            modifier = Modifier.padding(start = 16.dp, end = 16.dp, top = 6.dp, bottom = 6.dp),
                             fontFamily = QuickSand,
                             fontWeight = FontWeight.Black,
                             fontSize = 18.sp

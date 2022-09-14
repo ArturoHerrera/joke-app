@@ -7,4 +7,8 @@
     <!-- Login -->
     <string name="sign_in_google">Inicia sesión con Google</string>
     <string name="terms_condition">Acepto que me gustan los chistes malos, el humor negro y no voy a ofenderme.</string>
+
+    <!-- Profile drawer -->
+    <string name="profile_welcome">Bienvenido</string>
+    <string name="profile_logout">Cerrar sesión</string>
 </resources>
