@@ -1,11 +1,11 @@
 package com.arthur.joke_app.data.repository
 
+import com.arthur.joke_app.core.ServiceResult
+import com.arthur.joke_app.core.getDto
+import com.arthur.joke_app.core.getMessage
+import com.arthur.joke_app.core.succeeded
 import com.arthur.joke_app.data.model.JokeCategoryEnum
 import com.arthur.joke_app.data.remote.dto.JokeResponse
-import com.arthur.joke_app.utils.ServiceResult
-import com.arthur.joke_app.utils.getDto
-import com.arthur.joke_app.utils.getMessage
-import com.arthur.joke_app.utils.succeeded
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 

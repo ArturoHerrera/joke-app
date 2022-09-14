@@ -12,5 +12,19 @@ buildscript {
         gson_version = '2.8.9'
         okhttp_profiler_version = '1.0.8'
         dagger_hilt_version = '2.42'
+        g_services_version = '4.3.13'
+        firebase_bom_version = '30.2.0'
+        firebase_auth_version = '20.3.0'
+        play_services_version = '1.6.4'
+        play_services_auth_version = '20.3.0'
+        koil_version = '2.2.1'
+    }
+    repositories {
+        // Make sure that you have the following two repositories
+        google()  // Google's Maven repository
+        mavenCentral()  // Maven Central repository
+    }
+    dependencies {
+        classpath "com.google.gms:google-services:$g_services_version"
     }
 }

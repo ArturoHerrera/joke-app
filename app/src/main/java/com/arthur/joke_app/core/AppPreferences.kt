@@ -1,4 +1,4 @@
-package com.arthur.joke_app.utils
+package com.arthur.joke_app.core
 
 import android.app.Application
 import android.content.Context
