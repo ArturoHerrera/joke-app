@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">Joke-App</string>
 
-    //- Ids
+    <!-- ID's -->
     <string name="web_client_id">639553186868-qff7mat5v8fusnabvtfgnkc7trh5udi4.apps.googleusercontent.com</string>
+
+    <!-- Login -->
+    <string name="sign_in_google">Inicia sesión con Google</string>
+    <string name="terms_condition">Acepto que me gustan los chistes malos y el humor negro y no voy a ofenderme.</string>
 </resources>

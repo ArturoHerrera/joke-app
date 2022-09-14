@@ -9,6 +9,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.arthur.joke_app.ui.screens.home.HomeScreen
+import com.arthur.joke_app.ui.screens.login.LoginScreen
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 object Destinations {
@@ -23,7 +24,7 @@ object Destinations {
 @Composable
 fun JokeAppNavGraph(
     navController: NavHostController = rememberNavController(),
-    startDestination: String = Destinations.SPLASH_SCREEN
+    startDestination: String = Destinations.LOGIN_SCREEN
 ) {
     val actions = remember(navController) { MainActions(navController) }
 
@@ -31,7 +32,12 @@ fun JokeAppNavGraph(
         navController = navController,
         startDestination = startDestination
     ) {
-        composable(Destinations.SPLASH_SCREEN) {
+        composable(Destinations.LOGIN_SCREEN) {
+            LoginScreen(
+                navigateToView = actions.navigateToHome,
+            )
+        }
+        composable(Destinations.HOME_SCREEN) {
             HomeScreen(
                 navigateToView = actions.navigateToHome,
             )
