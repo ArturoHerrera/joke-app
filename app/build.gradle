@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'dagger.hilt.android.plugin'
+    id 'com.google.gms.google-services'
 }
 
 apply plugin: 'kotlin-kapt'
@@ -11,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId "com.arthur.joke_app"
-        minSdk 24
+        minSdk 29
         targetSdk 32
         versionCode 1
         versionName "1.0"
@@ -81,6 +82,19 @@ dependencies {
 
     //- Interceptor
     implementation "com.localebro:okhttpprofiler:$okhttp_profiler_version"
+
+    //- Firebase
+    implementation platform("com.google.firebase:firebase-bom:$firebase_bom_version")
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+    implementation 'com.google.firebase:firebase-auth-ktx'
+    implementation "com.google.firebase:firebase-firestore-ktx"
+    implementation "com.google.android.gms:play-services-auth:$firebase_auth_version"
+
+    //- Play Services
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:$play_services_version"
+
+    //- Koil images
+    implementation("io.coil-kt:coil-compose:$koil_version")
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

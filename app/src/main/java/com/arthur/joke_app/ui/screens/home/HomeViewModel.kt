@@ -28,19 +28,30 @@ class HomeViewModel @Inject constructor(
         getJoke()
     }
 
-    fun getJoke() {
-        vmUiState.update { it.copy(loading = true) }
+    fun getJoke() =
         viewModelScope.launch {
+            vmUiState.update { it.copy(loading = true) }
             jokeRepository.getJoke().collectLatest { result ->
                 result.first?.let { safeErrorMsg ->
-                    vmUiState.update { it.copy(loading = false, errorMsg = safeErrorMsg, joke = null) }
+                    vmUiState.update {
+                        it.copy(
+                            loading = false,
+                            errorMsg = safeErrorMsg,
+                            joke = null
+                        )
+                    }
                 } ?: run {
                     result.second?.let { safeJoke ->
-                        vmUiState.update { it.copy(loading = false, errorMsg = null, joke = safeJoke) }
+                        vmUiState.update {
+                            it.copy(
+                                loading = false,
+                                errorMsg = null,
+                                joke = safeJoke
+                            )
+                        }
                     }
                 }
             }
         }
-    }
 
 }

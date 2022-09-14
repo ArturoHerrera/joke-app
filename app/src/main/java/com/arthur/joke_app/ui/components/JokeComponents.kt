@@ -1,16 +1,17 @@
 package com.arthur.joke_app.ui.components
 
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Divider
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
@@ -48,7 +49,7 @@ fun JokeSingleComponent(
             ),
             fontFamily = QuickSand,
             color = SuperWhite,
-            fontWeight = FontWeight.Bold,
+            fontWeight = FontWeight.Black,
             textAlign = TextAlign.Center
         )
     }
@@ -70,7 +71,7 @@ fun JokeTwoPartsComponent(
             ),
             fontFamily = QuickSand,
             color = SuperWhite,
-            fontWeight = FontWeight.Bold,
+            fontWeight = FontWeight.Black,
             textAlign = TextAlign.Center
         )
     }
@@ -87,7 +88,7 @@ fun JokeTwoPartsComponent(
             ),
             fontFamily = QuickSand,
             color = SuperWhite,
-            fontWeight = FontWeight.Bold,
+            fontWeight = FontWeight.Black,
             textAlign = TextAlign.Center
         )
     }
@@ -100,20 +101,26 @@ fun ShareJokeComponent(
     onShareClicked: (joke: JokeResponse) -> Unit
 ) {
     Spacer(modifier = Modifier.padding(16.dp))
-    Divider(
-        color = SuperWhite,
+    Card(
         modifier = Modifier
             .fillMaxWidth()
-            .width(1.dp)
-    )
+            .height(12.dp),
+        backgroundColor = Color.White,
+        elevation = 8.dp,
+        border = BorderStroke(2.dp,Color.Black),
+        shape = RoundedCornerShape(12.dp),
+    ){}
     Spacer(modifier = Modifier.padding(16.dp))
-    Icon(
-        imageVector = Icons.Filled.Share,
-        contentDescription = null,
-        tint = SuperWhite,
-        modifier = Modifier
-            .requiredSize(35.dp)
-            .fillMaxWidth()
-            .clickable { onShareClicked(joke) }
-    )
+    IconButton(
+        onClick = { onShareClicked(joke) },
+        modifier = Modifier.offset(x = 4.dp, y = 4.dp),
+        enabled = true
+    ) {
+        Icon(
+            imageVector = Icons.Filled.Share,
+            tint = Color.White,
+            modifier = Modifier.background(Color.Black, shape = CircleShape).padding(8.dp),
+            contentDescription = "ShareIcon"
+        )
+    }
 }

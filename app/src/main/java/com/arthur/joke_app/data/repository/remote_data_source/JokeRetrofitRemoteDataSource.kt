@@ -1,11 +1,11 @@
 package com.arthur.joke_app.data.repository.remote_data_source
 
+import com.arthur.joke_app.core.HttpError
+import com.arthur.joke_app.core.ServiceResult
 import com.arthur.joke_app.data.model.JokeCategoryEnum
 import com.arthur.joke_app.data.remote.api.JokeApi
 import com.arthur.joke_app.data.remote.dto.JokeResponse
 import com.arthur.joke_app.data.repository.JokeRemoteDataSource
-import com.arthur.joke_app.utils.HttpError
-import com.arthur.joke_app.utils.ServiceResult
 
 class JokeRetrofitRemoteDataSource(
     private val jokeApi: JokeApi

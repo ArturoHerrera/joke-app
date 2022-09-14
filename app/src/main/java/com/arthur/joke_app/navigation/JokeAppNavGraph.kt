@@ -1,4 +1,4 @@
-package com.arthur.joke_app.ui
+package com.arthur.joke_app.navigation
 
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.material.ExperimentalMaterialApi
@@ -9,6 +9,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.arthur.joke_app.ui.screens.home.HomeScreen
+import com.arthur.joke_app.ui.screens.login.LoginScreen
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 object Destinations {
@@ -23,7 +24,7 @@ object Destinations {
 @Composable
 fun JokeAppNavGraph(
     navController: NavHostController = rememberNavController(),
-    startDestination: String = Destinations.SPLASH_SCREEN
+    startDestination: String = Destinations.LOGIN_SCREEN
 ) {
     val actions = remember(navController) { MainActions(navController) }
 
@@ -31,9 +32,14 @@ fun JokeAppNavGraph(
         navController = navController,
         startDestination = startDestination
     ) {
-        composable(Destinations.SPLASH_SCREEN) {
+        composable(Destinations.LOGIN_SCREEN) {
+            LoginScreen(
+                navigateToHome = actions.navigateToHome,
+            )
+        }
+        composable(Destinations.HOME_SCREEN) {
             HomeScreen(
-                navigateToView = actions.navigateToHome,
+                navigateFromHomeToLogin = actions.navigateFromHomeToLogin,
             )
         }
     }
@@ -41,7 +47,14 @@ fun JokeAppNavGraph(
 
 class MainActions(navController: NavHostController) {
     val navigateToHome: () -> Unit = {
-        navController.navigate(Destinations.HOME_SCREEN)
+        navController.navigate(Destinations.HOME_SCREEN){
+            popUpTo(Destinations.LOGIN_SCREEN){ inclusive = true }
+        }
+    }
+    val navigateFromHomeToLogin : () -> Unit = {
+        navController.navigate(Destinations.LOGIN_SCREEN){
+            popUpTo(Destinations.HOME_SCREEN){ inclusive = true }
+        }
     }
     val upPress: () -> Unit = {
         navController.navigateUp()

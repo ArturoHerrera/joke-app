@@ -1,4 +1,4 @@
-package com.arthur.joke_app.utils
+package com.arthur.joke_app.core
 
 sealed class ServiceResult<out R> {
     data class Success<out T>(val dto: T?, val responseCode: Int): ServiceResult<T>()
