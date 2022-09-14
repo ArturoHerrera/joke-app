@@ -15,6 +15,7 @@ Aplicación de Android realizada con:
 ✓ Se implementa API de JokeApi: https://v2.jokeapi.dev/ 
 
 
+
 TODO:
 - Mejorar el estado de failed, cuando se cancela la ventana de OneTap.
 - Implementar Room para persistencia de los chistes.
@@ -22,8 +23,11 @@ TODO:
 Alerta: Si se cancela muchas veces la ventana de OneTap, ingresar este código en el marcador del telefono:  *#*#66382723#*#*
 
 
+
 Demo:
+
 ![Demo](https://user-images.githubusercontent.com/11370491/190273120-89e3ab46-1bd0-4530-9d84-423cd7a8ab8d.gif)
+
 
 
 Ref:
