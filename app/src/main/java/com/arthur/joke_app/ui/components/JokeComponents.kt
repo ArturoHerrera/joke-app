@@ -2,20 +2,17 @@ package com.arthur.joke_app.ui.components
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shadow
-import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -113,21 +110,17 @@ fun ShareJokeComponent(
         border = BorderStroke(2.dp,Color.Black),
         shape = RoundedCornerShape(12.dp),
     ){}
-    /*Divider(
-        color = SuperWhite,
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(5.dp)
-            .fillMaxSize()
-    )*/
     Spacer(modifier = Modifier.padding(16.dp))
-    Icon(
-        imageVector = Icons.Filled.Share,
-        contentDescription = null,
-        tint = SuperWhite,
-        modifier = Modifier
-            .requiredSize(35.dp)
-            .fillMaxWidth()
-            .clickable { onShareClicked(joke) }
-    )
+    IconButton(
+        onClick = { onShareClicked(joke) },
+        modifier = Modifier.offset(x = 4.dp, y = 4.dp),
+        enabled = true
+    ) {
+        Icon(
+            imageVector = Icons.Filled.Share,
+            tint = Color.White,
+            modifier = Modifier.background(Color.Black, shape = CircleShape).padding(8.dp),
+            contentDescription = "ShareIcon"
+        )
+    }
 }

@@ -1,12 +1,12 @@
 package com.arthur.joke_app.ui.screens.login
 
 import android.app.Activity
-import android.util.Log
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.foundation.*
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
@@ -28,14 +28,12 @@ import com.arthur.joke_app.R
 import com.arthur.joke_app.ui.components.CircleCheckbox
 import com.arthur.joke_app.ui.components.OneTapSignIn
 import com.arthur.joke_app.ui.components.SignInWithGoogle
-import com.arthur.joke_app.ui.screens.home.HomeViewModel
 import com.arthur.joke_app.ui.theme.QuickSand
 import com.arthur.joke_app.ui.theme.SuperWhite
 import com.arthur.joke_app.utils.ExtFunctions.gradientBackground
 import com.google.android.gms.auth.api.identity.BeginSignInResult
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.GoogleAuthProvider
-import com.google.gson.Gson
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlin.random.Random
 
@@ -163,7 +161,6 @@ fun LoginScreen(
     )
 
     val launcher = rememberLauncherForActivityResult(ActivityResultContracts.StartIntentSenderForResult()) { result ->
-        Log.i("testLogin", "- LoginScreen launcher result -> ${result}")
         if (result.resultCode == Activity.RESULT_OK ) {
             try {
                 val credentials = viewModel.oneTapClient.getSignInCredentialFromIntent(result.data)
@@ -185,7 +182,6 @@ fun LoginScreen(
         OneTapSignIn(
             oneTapSignInResponse = safeOneTapSignInResponse,
             launch = {
-                Log.i("testLogin", "- LoginScreen oneTapSignInResponse launch -> ${Gson().toJson(it)}")
                 LaunchedEffect(it) {
                     launch(it)
                 }
@@ -197,7 +193,6 @@ fun LoginScreen(
         SignInWithGoogle(
             signInWithGoogleResponse = safeSignInWithGoogleResponse,
             navigateToHomeScreen = { signedIn ->
-                Log.i("testLogin", "- LoginScreen signInWithGoogleResponse navigateToHomeScreen -> ${Gson().toJson(signedIn)}")
                 if (signedIn) {
                     LaunchedEffect(signedIn) {
                         navigateToHome()

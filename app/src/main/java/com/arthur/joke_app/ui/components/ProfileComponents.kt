@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Logout
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -109,7 +111,7 @@ fun HomeProfileDrawer(
         Surface(
             modifier = Modifier
                 .align(Alignment.BottomCenter)
-                .fillMaxWidth().padding(16.dp)
+                .fillMaxWidth().padding(vertical = 32.dp, horizontal = 16.dp)
         ){
             OutlinedButton(
                 border = BorderStroke(2.dp, Color.Black),
@@ -125,9 +127,7 @@ fun HomeProfileDrawer(
                 onClick = onLogOut
             ) {
                 Image(
-                    painter = painterResource(
-                        id = R.drawable.ic_google_logo
-                    ),
+                    imageVector = Icons.Filled.Logout,
                     contentDescription = null
                 )
                 Text(

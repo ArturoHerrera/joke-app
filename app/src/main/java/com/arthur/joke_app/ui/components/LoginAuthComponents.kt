@@ -1,23 +1,17 @@
 package com.arthur.joke_app.ui.components
 
-import android.util.Log
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.material.LinearProgressIndicator
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import com.arthur.joke_app.core.FirebaseAuthResponse
 import com.arthur.joke_app.core.FirebaseAuthResponse.*
 import com.google.android.gms.auth.api.identity.BeginSignInResult
-import com.google.gson.Gson
 import kotlin.random.Random
 
 @Composable
@@ -25,8 +19,6 @@ fun OneTapSignIn(
     oneTapSignInResponse: FirebaseAuthResponse<BeginSignInResult>,
     launch: @Composable (result: BeginSignInResult) -> Unit
 ) {
-    Log.i("testLogin", "- OneTapSignIn enter -")
-    Log.i("testLogin", "- OneTapSignIn uiState.oneTapSignInResponse -> ${Gson().toJson(oneTapSignInResponse)}")
     when(val oneTapSignInResponse = oneTapSignInResponse) {
         is Loading -> ProgressBar()
         is Success -> oneTapSignInResponse.data?.let {

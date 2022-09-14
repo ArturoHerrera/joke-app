@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.arthur.joke_app.core.FirebaseAuthResponse
 import com.arthur.joke_app.data.repository.AuthRepository
-import com.arthur.joke_app.ui.screens.home.HomeUiState
 import com.google.android.gms.auth.api.identity.SignInClient
 import com.google.firebase.auth.AuthCredential
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -93,15 +92,5 @@ class LoginViewModel @Inject constructor(
             }
         }
     }
-
-    fun revokeAccess() = viewModelScope.launch {
-        authRepository.revokeAccess().collect { response ->
-            vmUiState.update {
-                it.copy(revokeAccessResponse = response,)
-            }
-        }
-    }
-
-
 
 }

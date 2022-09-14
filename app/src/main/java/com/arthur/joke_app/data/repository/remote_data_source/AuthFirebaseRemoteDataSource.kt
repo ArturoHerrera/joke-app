@@ -1,6 +1,5 @@
 package com.arthur.joke_app.data.repository.remote_data_source
 
-import android.util.Log
 import com.arthur.joke_app.core.AppConstants.CREATED_AT
 import com.arthur.joke_app.core.AppConstants.DISPLAY_NAME
 import com.arthur.joke_app.core.AppConstants.EMAIL
@@ -19,7 +18,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FieldValue.serverTimestamp
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.gson.Gson
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
 import javax.inject.Named
@@ -39,7 +37,6 @@ class AuthFirebaseRemoteDataSource(
 
     override fun oneTapSignInWithGoogle() = flow {
         try {
-            Log.i("testLogin", "-> AuthFirebaseRemoteDataSource oneTapSignInWithGoogle")
             emit(Loading)
             val signInResult = oneTapClient.beginSignIn(signInRequest).await()
             emit(Success(signInResult))
@@ -55,7 +52,6 @@ class AuthFirebaseRemoteDataSource(
 
     override fun firebaseSignInWithGoogle(googleCredential: AuthCredential) = flow {
         try {
-            Log.i("testLogin", "-> AuthFirebaseRemoteDataSource firebaseSignInWithGoogle}")
             emit(Loading)
             val authResult = auth.signInWithCredential(googleCredential).await()
             val isNewUser = authResult.additionalUserInfo?.isNewUser ?: false
@@ -69,7 +65,6 @@ class AuthFirebaseRemoteDataSource(
     }
 
     private suspend fun addUserToFirestore() {
-        Log.i("testLogin", "-> AuthFirebaseRemoteDataSource addUserToFirestore}")
         auth.currentUser?.apply {
             val user = toUser()
             db.collection(USERS).document(uid).set(user).await()
@@ -77,27 +72,10 @@ class AuthFirebaseRemoteDataSource(
     }
 
     override fun signOut() = flow {
-        Log.i("testLogin", "-> AuthFirebaseRemoteDataSource signOut}")
         try {
             emit(Loading)
             oneTapClient.signOut().await()
             auth.signOut()
-            emit(Success(true))
-        } catch (e: Exception) {
-            emit(Failure(e))
-        }
-    }
-
-    override fun revokeAccess() = flow {
-        try {
-            Log.i("testLogin", "-> AuthFirebaseRemoteDataSource revokeAccess}")
-            emit(Loading)
-            auth.currentUser?.apply {
-                db.collection(USERS).document(uid).delete().await()
-                signInClient.revokeAccess().await()
-                oneTapClient.signOut().await()
-                delete().await()
-            }
             emit(Success(true))
         } catch (e: Exception) {
             emit(Failure(e))

@@ -5,7 +5,7 @@ import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import java.lang.Math.*
+import java.lang.Math.PI
 import kotlin.math.pow
 import kotlin.math.sqrt
 

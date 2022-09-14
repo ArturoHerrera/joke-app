@@ -20,8 +20,6 @@ class AuthRepository(
 
     fun signOut() = authRemoteDS.signOut()
 
-    fun revokeAccess() = authRemoteDS.revokeAccess()
-
 }
 
 interface AuthRemoteDataSource {
@@ -34,7 +32,5 @@ interface AuthRemoteDataSource {
     fun firebaseSignInWithGoogle(googleCredential: AuthCredential): Flow<FirebaseAuthResponse<Boolean>>
 
     fun signOut(): Flow<FirebaseAuthResponse<Boolean>>
-
-    fun revokeAccess(): Flow<FirebaseAuthResponse<Boolean>>
 }
 

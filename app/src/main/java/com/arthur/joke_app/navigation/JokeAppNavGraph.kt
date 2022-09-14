@@ -48,16 +48,12 @@ fun JokeAppNavGraph(
 class MainActions(navController: NavHostController) {
     val navigateToHome: () -> Unit = {
         navController.navigate(Destinations.HOME_SCREEN){
-            popUpTo(Destinations.LOGIN_SCREEN){
-                inclusive = true
-            }
+            popUpTo(Destinations.LOGIN_SCREEN){ inclusive = true }
         }
     }
     val navigateFromHomeToLogin : () -> Unit = {
         navController.navigate(Destinations.LOGIN_SCREEN){
-            popUpTo(Destinations.HOME_SCREEN){
-                inclusive = true
-            }
+            popUpTo(Destinations.HOME_SCREEN){ inclusive = true }
         }
     }
     val upPress: () -> Unit = {
