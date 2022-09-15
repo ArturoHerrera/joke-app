@@ -8,6 +8,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.arthur.joke_app.ui.screens.fcm.FirebasePushNotificationScreen
 import com.arthur.joke_app.ui.screens.home.HomeScreen
 import com.arthur.joke_app.ui.screens.login.LoginScreen
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -16,6 +17,7 @@ object Destinations {
     const val LOGIN_SCREEN = "login"
     const val SPLASH_SCREEN = "splash"
     const val HOME_SCREEN = "home"
+    const val FCM_SCREEN = "notifications"
 }
 
 @ExperimentalAnimationApi
@@ -39,7 +41,12 @@ fun JokeAppNavGraph(
         }
         composable(Destinations.HOME_SCREEN) {
             HomeScreen(
-                navigateFromHomeToLogin = actions.navigateFromHomeToLogin,
+                navigateFromHomeToLogin = actions.navigateFromHomeToLogin
+            )
+        }
+        composable(Destinations.FCM_SCREEN) {
+            FirebasePushNotificationScreen(
+                upPress = actions.upPress
             )
         }
     }
