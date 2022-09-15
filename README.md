@@ -2,11 +2,15 @@
 
 Aplicación de Android realizada con:
 
-✓ Se establece patrón arquitectónico; MVVM.
+✓ MVVM
 
 ✓ Inyección de dependencias con Hilt.
 
 ✓ UI con Jetpack Compose.
+
+✓ Login/Registro con OneTap de Google
+
+✓ Push notifications con Firebase Cloud Messaging
 
 ✓ Compose Navigation.
 
@@ -16,17 +20,31 @@ Aplicación de Android realizada con:
 
 
 
+
 TODO:
 - Mejorar el estado de failed, cuando se cancela la ventana de OneTap.
 - Implementar Room para persistencia de los chistes.
+- Implementar Room/SharedPreferences/DataStore para persistencia de datos del usuario/sesion.
 
-Alerta: Si se cancela muchas veces la ventana de OneTap, ingresar este código en el marcador del telefono:  *#*#66382723#*#*
+
+
+Al iniciar la app, el registration token de FCM se copia en automático al portapapeles.
+Para hacer prueba de push se recomienda la siguiente web:
+https://testfcm.com/
+
+
+
+Alerta: Si se cancela muchas veces la ventana de OneTap, ingresar este código en el marcador del telefono para quitar la restriccon de intentos, cuando quieras volver a activarla, vuelve a ingresarlo:  
+*#*#66382723#*#*
+
 
 
 
 Demo:
 
 ![Demo](https://user-images.githubusercontent.com/11370491/190273120-89e3ab46-1bd0-4530-9d84-423cd7a8ab8d.gif)
+
+
 
 
 
