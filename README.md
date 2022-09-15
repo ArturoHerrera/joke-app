@@ -21,6 +21,7 @@ Aplicación de Android realizada con:
 
 
 
+
 TODO:
 - Mejorar el estado de failed, cuando se cancela la ventana de OneTap.
 - Implementar Room para persistencia de los chistes.
@@ -28,9 +29,11 @@ TODO:
 
 
 
+
 Al iniciar la app, el registration token de FCM se copia en automático al portapapeles.
 Para hacer prueba de push se recomienda la siguiente web:
 https://testfcm.com/
+
 
 
 
