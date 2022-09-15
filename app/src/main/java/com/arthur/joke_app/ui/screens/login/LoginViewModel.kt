@@ -30,7 +30,7 @@ class LoginViewModel @Inject constructor(
         vmUiState.value
     )
 
-    //TODO Improve the way of saving user data. Room or sharedPreferences.
+    //TODO Improve the way user information is stored. It could be Room, dataStore or sharedPreferences.
     val isUserAuthenticated = authRepository.isUserAuthenticatedInFirebase
     val userDisplayName = authRepository.userDisplayName
     val userPhotoUrl = authRepository.userPhotoUrl
