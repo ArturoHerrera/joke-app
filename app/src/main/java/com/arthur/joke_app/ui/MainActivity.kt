@@ -16,7 +16,6 @@ import androidx.compose.material.Scaffold
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.arthur.joke_app.data.model.MyNotification
@@ -27,7 +26,6 @@ import com.arthur.joke_app.ui.theme.JokeAppTheme
 import com.google.firebase.messaging.FirebaseMessaging
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import java.lang.Exception
 
 @ExperimentalAnimationApi
 @ExperimentalMaterialApi
