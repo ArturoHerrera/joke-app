@@ -11,4 +11,8 @@
     <!-- Profile drawer -->
     <string name="profile_welcome">Bienvenido</string>
     <string name="profile_logout">Cerrar sesión</string>
+    <string name="profile_notifications">Notificaciones</string>
+
+    <!-- Notifications -->
+    <string name="default_notification_channel_id">Global</string>
 </resources>

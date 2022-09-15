@@ -9,7 +9,10 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.CheckCircle
+import androidx.compose.material.icons.filled.CircleNotifications
 import androidx.compose.material.icons.filled.Logout
+import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -28,6 +31,7 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.arthur.joke_app.R
+import com.arthur.joke_app.data.model.MyNotification
 import com.arthur.joke_app.ui.theme.QuickSand
 import com.arthur.joke_app.ui.theme.SuperWhite
 import com.arthur.joke_app.utils.ExtFunctions.gradientBackground
@@ -36,9 +40,11 @@ import kotlin.random.Random
 @Composable
 fun HomeProfileDrawer(
     userDisplayName: String,
-    userPhotoUrl:String,
+    userPhotoUrl: String,
     onLogOut: () -> Unit
-){
+) {
+    val context = LocalContext.current
+
     Box(
         contentAlignment = Alignment.TopCenter,
         modifier = Modifier
@@ -111,9 +117,41 @@ fun HomeProfileDrawer(
 
         Surface(
             modifier = Modifier
+                .align(Alignment.TopEnd)
+                .fillMaxWidth()
+                .padding(end = 8.dp),
+            color = Color.Transparent
+        ) {
+            Row(
+                verticalAlignment = Alignment.Top,
+                horizontalArrangement = Arrangement.End,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                IconButton(
+                    modifier = Modifier.offset(x = 4.dp, y = 4.dp),
+                    enabled = true,
+                    onClick = {
+                        val noti = MyNotification(context, "FCM", "Notificacion de prueba.")
+                        noti.fireNotification()
+                    }
+                ) {
+                    Icon(
+                        imageVector = Icons.Filled.CircleNotifications,
+                        tint = Color.White,
+                        modifier = Modifier.background(Color.Black, shape = CircleShape),
+                        contentDescription = "notifications"
+                    )
+                }
+            }
+        }
+
+        Surface(
+            modifier = Modifier
                 .align(Alignment.BottomCenter)
-                .fillMaxWidth().padding(vertical = 32.dp, horizontal = 16.dp)
-        ){
+                .fillMaxWidth()
+                .padding(vertical = 32.dp, horizontal = 16.dp),
+            color = Color.Transparent
+        ) {
             OutlinedButton(
                 border = BorderStroke(2.dp, Color.Black),
                 modifier = Modifier.fillMaxWidth(),
@@ -133,7 +171,12 @@ fun HomeProfileDrawer(
                 )
                 Text(
                     text = stringResource(id = R.string.profile_logout),
-                    modifier = Modifier.padding(start = 16.dp, end = 16.dp, top = 6.dp, bottom = 6.dp),
+                    modifier = Modifier.padding(
+                        start = 16.dp,
+                        end = 16.dp,
+                        top = 6.dp,
+                        bottom = 6.dp
+                    ),
                     fontFamily = QuickSand,
                     fontWeight = FontWeight.Black,
                     fontSize = 12.sp
