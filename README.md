@@ -8,7 +8,7 @@ Aplicación de Android realizada con:
 
 ✓ UI con Jetpack Compose.
 
-✓ Login/Registro con OneTap de Google
+✓ Login/Registro con OneTap de Google (Se requiere de google play services)
 
 ✓ Push notifications con Firebase Cloud Messaging
 
