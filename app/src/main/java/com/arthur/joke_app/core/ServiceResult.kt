@@ -1,8 +1,8 @@
 package com.arthur.joke_app.core
 
 sealed class ServiceResult<out R> {
-    data class Success<out T>(val dto: T?, val responseCode: Int): ServiceResult<T>()
-    data class Error(val message: String, val errorCode: Int): ServiceResult<Nothing>()
+    data class Success<out T>(val dto: T?): ServiceResult<T>()
+    data class Error(val message: String, val errorCode: Int = -1): ServiceResult<Nothing>()
 }
 
 val ServiceResult<*>.succeeded
@@ -12,9 +12,9 @@ fun <T> ServiceResult<T>.getDto(): T {
     return (this as ServiceResult.Success<T>).dto!!
 }
 
-fun ServiceResult<*>.getResponseCode(): Int {
+/*fun ServiceResult<*>.getResponseCode(): Int {
     return (this as ServiceResult.Success).responseCode
-}
+}*/
 
 fun ServiceResult<*>.getMessage(): String {
     return (this as ServiceResult.Error).message
