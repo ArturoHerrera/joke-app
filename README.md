@@ -26,6 +26,7 @@ TODO:
 - Mejorar el estado de failed, cuando se cancela la ventana de OneTap.
 - Implementar Room para persistencia de los chistes.
 - Implementar Room/SharedPreferences/DataStore para persistencia de datos del usuario/sesion.
+- Mover la parte de Auth a su propio repository.
 
 
 
