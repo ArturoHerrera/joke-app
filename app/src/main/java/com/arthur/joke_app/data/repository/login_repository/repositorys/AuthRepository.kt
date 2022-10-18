@@ -1,4 +1,4 @@
-package com.arthur.joke_app.data.repository
+package com.arthur.joke_app.data.repository.login_repository.repositorys
 
 import com.arthur.joke_app.core.FirebaseAuthResponse
 import com.google.android.gms.auth.api.identity.BeginSignInResult
