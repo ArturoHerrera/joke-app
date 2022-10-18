@@ -1,8 +1,8 @@
 package com.arthur.joke_app.di
 
 import com.arthur.joke_app.data.remote.api.JokeApi
-import com.arthur.joke_app.data.repository.JokeRepositoryRepository
-import com.arthur.joke_app.data.repository.remote_data_source.JokeRetrofitRemoteDataSource
+import com.arthur.joke_app.data.repository.joke_repository.repositorys.JokeGoodRepository
+import com.arthur.joke_app.data.repository.joke_repository.remote_data_source.JokeRetrofitRemoteDataSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,9 +15,9 @@ object RepositoryModule {
 
     @ViewModelScoped
     @Provides
-    fun providesBankReferencesRepository(
+    fun providesJokeGoodRepository(
         jokeApi: JokeApi
-    ): JokeRepositoryRepository = JokeRepositoryRepository(
+    ): JokeGoodRepository = JokeGoodRepository(
         jokeRemoteDS = JokeRetrofitRemoteDataSource(
             jokeApi = jokeApi
         )

@@ -3,7 +3,7 @@ package com.arthur.joke_app.ui.screens.login
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.arthur.joke_app.core.FirebaseAuthResponse
-import com.arthur.joke_app.data.repository.AuthRepository
+import com.arthur.joke_app.data.repository.login_repository.repositorys.AuthRepository
 import com.google.android.gms.auth.api.identity.SignInClient
 import com.google.firebase.auth.AuthCredential
 import dagger.hilt.android.lifecycle.HiltViewModel
