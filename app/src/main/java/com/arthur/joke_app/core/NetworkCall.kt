@@ -14,5 +14,4 @@ suspend fun <T> networkCall(
     ServiceResult.Error(message = HttpError.fromCode(e.code()).errorMsg)
 } catch (e: Exception) {
     ServiceResult.Error(message = "Ocurrio un problema inesperado")
-    //TODO Mejorar sistema de errores para obtener código de response.
 }
