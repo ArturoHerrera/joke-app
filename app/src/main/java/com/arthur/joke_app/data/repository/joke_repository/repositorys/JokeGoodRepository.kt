@@ -6,11 +6,14 @@ import com.arthur.joke_app.core.getMessage
 import com.arthur.joke_app.core.succeeded
 import com.arthur.joke_app.data.model.JokeCategoryEnum
 import com.arthur.joke_app.data.remote.dto.JokeResponse
+import kotlinx.coroutines.CloseableCoroutineDispatcher
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 
 class JokeGoodRepository(
-    private val jokeRemoteDS: JokeRemoteDataSource
+    private val jokeRemoteDS: JokeRemoteDataSource,
+    private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : JokeTasks {
 
     override suspend fun getJoke(): Flow<Pair<String?, JokeResponse?>> = flow {
@@ -22,7 +25,7 @@ class JokeGoodRepository(
         }
         .filterNotNull()
         .catch { e -> e.printStackTrace() }
-        .flowOn(Dispatchers.IO)
+        .flowOn(dispatcher)
 
 }
 
