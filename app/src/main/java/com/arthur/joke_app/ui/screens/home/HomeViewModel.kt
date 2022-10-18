@@ -2,7 +2,7 @@ package com.arthur.joke_app.ui.screens.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.arthur.joke_app.data.repository.JokeRepositoryRepository
+import com.arthur.joke_app.data.repository.joke_repository.repositorys.JokeTasks
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.*
@@ -13,7 +13,7 @@ import javax.inject.Inject
 @ExperimentalCoroutinesApi
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val jokeRepository: JokeRepositoryRepository
+    private val jokeRepository: JokeTasks
 ) : ViewModel() {
 
     private val vmUiState = MutableStateFlow(HomeUiState())

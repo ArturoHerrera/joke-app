@@ -1,4 +1,4 @@
-package com.arthur.joke_app.data.repository.remote_data_source
+package com.arthur.joke_app.data.repository.login_repository.remote_data_source
 
 import com.arthur.joke_app.core.AppConstants.CREATED_AT
 import com.arthur.joke_app.core.AppConstants.DISPLAY_NAME
@@ -9,7 +9,7 @@ import com.arthur.joke_app.core.AppConstants.SIGN_IN_REQUEST
 import com.arthur.joke_app.core.AppConstants.SIGN_UP_REQUEST
 import com.arthur.joke_app.core.AppConstants.USERS
 import com.arthur.joke_app.core.FirebaseAuthResponse.*
-import com.arthur.joke_app.data.repository.AuthRemoteDataSource
+import com.arthur.joke_app.data.repository.login_repository.repositorys.AuthRemoteDataSource
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.identity.SignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInClient

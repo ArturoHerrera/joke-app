@@ -1,4 +1,4 @@
-package com.arthur.joke_app.data.repository
+package com.arthur.joke_app.data.repository.joke_repository.repositorys
 
 import com.arthur.joke_app.core.ServiceResult
 import com.arthur.joke_app.core.getDto
@@ -9,11 +9,11 @@ import com.arthur.joke_app.data.remote.dto.JokeResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 
-class JokeRepositoryRepository(
+class JokeGoodRepository(
     private val jokeRemoteDS: JokeRemoteDataSource
-) {
+) : JokeTasks {
 
-    suspend fun getJoke(): Flow<Pair<String?, JokeResponse?>> = flow {
+    override suspend fun getJoke(): Flow<Pair<String?, JokeResponse?>> = flow {
         emit(jokeRemoteDS.getJoke())
     }
         .map { result ->

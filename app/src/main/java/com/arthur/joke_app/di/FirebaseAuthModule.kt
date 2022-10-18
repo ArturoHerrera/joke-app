@@ -5,8 +5,8 @@ import android.content.Context
 import com.arthur.joke_app.R
 import com.arthur.joke_app.core.AppConstants.SIGN_IN_REQUEST
 import com.arthur.joke_app.core.AppConstants.SIGN_UP_REQUEST
-import com.arthur.joke_app.data.repository.AuthRepository
-import com.arthur.joke_app.data.repository.remote_data_source.AuthFirebaseRemoteDataSource
+import com.arthur.joke_app.data.repository.login_repository.repositorys.AuthRepository
+import com.arthur.joke_app.data.repository.login_repository.remote_data_source.AuthFirebaseRemoteDataSource
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.identity.Identity
 import com.google.android.gms.auth.api.identity.SignInClient
