@@ -1,6 +1,6 @@
 package com.arthur.joke_app.di
 
-import com.arthur.joke_app.data.repository.joke_repository.repositorys.JokeGoodRepository
+import com.arthur.joke_app.data.repository.joke_repository.repositorys.GoodJokeRepository
 import com.arthur.joke_app.data.repository.joke_repository.repositorys.JokeTasks
 import dagger.Binds
 import dagger.Module
@@ -13,7 +13,7 @@ abstract class InterfaceTasksModule {
 
     @Binds
     abstract fun providesJokeGoodRepository(
-        jokeGoodRepository: JokeGoodRepository
+        goodJokeRepository: GoodJokeRepository
     ): JokeTasks
 
 }

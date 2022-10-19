@@ -11,7 +11,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 
-class JokeGoodRepository(
+class GoodJokeRepository(
     private val jokeRemoteDS: JokeRemoteDataSource,
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : JokeTasks {
